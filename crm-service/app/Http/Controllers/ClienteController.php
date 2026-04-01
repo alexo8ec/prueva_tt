@@ -9,12 +9,12 @@ class ClienteController extends Controller
 {
     /**
      * @OA\Get(
-     *     path="/api/test",
-     *     summary="Prueba API",
-     *     tags={"Test"},
+     *     path="/api/v1/clientes",
+     *     tags={"Clientes"},
+     *     summary="Listar clientes",
      *     @OA\Response(
      *         response=200,
-     *         description="OK"
+     *         description="Listado de clientes"
      *     )
      * )
      */
@@ -29,6 +29,27 @@ class ClienteController extends Controller
     }
 
 
+    /**
+     * @OA\Post(
+     *     path="/api/v1/clientes",
+     *     tags={"Clientes"},
+     *     summary="Crear cliente",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"nombre","apellido","email"},
+     *             @OA\Property(property="nombre", type="string", example="Juan"),
+     *             @OA\Property(property="apellido", type="string", example="Pérez"),
+     *             @OA\Property(property="email", type="string", example="juan@correo.com"),
+     *             @OA\Property(property="telefono", type="string", example="123456789")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Cliente creado"
+     *     )
+     * )
+     */
     public function store(Request $request)
     {
         try {
@@ -44,6 +65,27 @@ class ClienteController extends Controller
         return response()->json(Cliente::create($request->all()));
     }
 
+    /**
+     * @OA\Get(
+     *     path="/api/v1/clientes/{id}",
+     *     tags={"Clientes"},
+     *     summary="Mostrar cliente",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Datos del cliente"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Cliente no encontrado"
+     *     )
+     * )
+     */
     public function show(int $id)
     {
         try {
@@ -54,6 +96,36 @@ class ClienteController extends Controller
         return $cliente;
     }
 
+    /**
+     * @OA\Put(
+     *     path="/api/v1/clientes/{id}",
+     *     tags={"Clientes"},
+     *     summary="Actualizar cliente",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             @OA\Property(property="nombre", type="string", example="Juan"),
+     *             @OA\Property(property="apellido", type="string", example="Pérez"),
+     *             @OA\Property(property="email", type="string", example="juan@correo.com"),
+     *             @OA\Property(property="telefono", type="string", example="123456789")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Cliente actualizado"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Cliente no encontrado"
+     *     )
+     * )
+     */
     public function update(Request $request, int $id)
     {
         try {
@@ -90,6 +162,27 @@ class ClienteController extends Controller
     }
 
 
+    /**
+     * @OA\Delete(
+     *     path="/api/v1/clientes/{id}",
+     *     tags={"Clientes"},
+     *     summary="Eliminar cliente",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Cliente eliminado"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Cliente no encontrado"
+     *     )
+     * )
+     */
     public function destroy(int $id)
     {
         try {

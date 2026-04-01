@@ -61,7 +61,7 @@ services:
     # expose:
     #  - "80"
     ports:
-      - "5000:80"   # 👈 IMPORTANTE para acceder a swagger
+      - "5000:80" 
     networks:
       - backend
 
