@@ -1,29 +1,36 @@
 {
   "format": 1,
   "restore": {
-    "/src/AuthService/AuthService.csproj": {}
+    "D:\\EjercicioPruebaTT\\auth-service\\AuthService\\AuthService.csproj": {}
   },
   "projects": {
-    "/src/AuthService/AuthService.csproj": {
+    "D:\\EjercicioPruebaTT\\auth-service\\AuthService\\AuthService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/src/AuthService/AuthService.csproj",
+        "projectUniqueName": "D:\\EjercicioPruebaTT\\auth-service\\AuthService\\AuthService.csproj",
         "projectName": "AuthService",
-        "projectPath": "/src/AuthService/AuthService.csproj",
-        "packagesPath": "/root/.nuget/packages/",
-        "outputPath": "/src/AuthService/obj/",
+        "projectPath": "D:\\EjercicioPruebaTT\\auth-service\\AuthService\\AuthService.csproj",
+        "packagesPath": "C:\\Users\\alexo8ec\\.nuget\\packages\\",
+        "outputPath": "D:\\EjercicioPruebaTT\\auth-service\\AuthService\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/root/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\alexo8ec\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
+            "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {}
           }
@@ -37,10 +44,12 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net8.0": {
+          "framework": "net8.0",
           "targetAlias": "net8.0",
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
@@ -85,7 +94,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.419/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

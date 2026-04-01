@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ClientesService, Cliente } from '../services/clientes.service';
@@ -25,8 +26,27 @@ export class ClientesComponent implements OnInit {
   }
 
   cargarClientes() {
-    this.clientesService.getClientes().subscribe(clientes => {
-      this.clientes = clientes;
+    Swal.fire({
+      title: 'Cargando clientes...',
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
+    this.clientesService.getClientes().subscribe({
+      next: (clientes) => {
+        this.clientes = clientes;
+        Swal.close();
+      },
+      error: () => {
+        Swal.close();
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'No se pudieron cargar los clientes.'
+        });
+      }
     });
   }
 
@@ -57,14 +77,66 @@ export class ClientesComponent implements OnInit {
 
   guardarCliente() {
     if (this.editando && this.clienteSeleccionado && this.clienteSeleccionado.id) {
-      this.clientesService.actualizarCliente(this.clienteSeleccionado.id, this.nuevoCliente).subscribe(() => {
-        this.cargarClientes();
-        this.cerrarModal();
+      Swal.fire({
+        title: 'Actualizando cliente...',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        didOpen: () => {
+          Swal.showLoading();
+        }
+      });
+      this.clientesService.actualizarCliente(this.clienteSeleccionado.id, this.nuevoCliente).subscribe({
+        next: () => {
+          this.cargarClientes();
+          this.cerrarModal();
+          Swal.close();
+          Swal.fire({
+            icon: 'success',
+            title: 'Cliente actualizado',
+            text: 'Los datos del cliente fueron actualizados correctamente.',
+            timer: 2000,
+            showConfirmButton: false
+          });
+        },
+        error: () => {
+          Swal.close();
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'No se pudo actualizar el cliente.',
+          });
+        }
       });
     } else {
-      this.clientesService.crearCliente(this.nuevoCliente).subscribe(() => {
-        this.cargarClientes();
-        this.cerrarModal();
+      Swal.fire({
+        title: 'Registrando cliente...',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        didOpen: () => {
+          Swal.showLoading();
+        }
+      });
+      this.clientesService.crearCliente(this.nuevoCliente).subscribe({
+        next: (resp) => {
+          this.cargarClientes();
+          this.cerrarModal();
+          Swal.close();
+          Swal.fire({
+            icon: 'success',
+            title: 'Cliente creado',
+            text: `El cliente ${resp?.nombre} ${resp?.apellido} fue registrado correctamente.`,
+            timer: 2000,
+            showConfirmButton: false
+          });
+        },
+        error: () => {
+          Swal.close();
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'No se pudo registrar el cliente.',
+          });
+        }
       });
     }
   }

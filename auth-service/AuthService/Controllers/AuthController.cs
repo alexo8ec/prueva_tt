@@ -12,13 +12,15 @@ namespace AuthService.Controllers
     [Route("api/auth")]
     public class AuthController : Controller
     {
+        private readonly IConfiguration _config;
         private readonly AppDbContext _context;
         private readonly JwtService _jwtService;
 
-        public AuthController(AppDbContext context, JwtService jwtService)
+        public AuthController(AppDbContext context, JwtService jwtService, IConfiguration config)
         {
             _context = context;
             _jwtService = jwtService;
+            _config = config;
         }
 
         [HttpPost("register")]
@@ -59,7 +61,7 @@ namespace AuthService.Controllers
                 if (user == null)
                     return Unauthorized("Credenciales inválidas");
 
-                var token = _jwtService.GenerateToken(user.Email);
+                var token = _jwtService.GenerateToken(user.Email); //+ " - " + _config["Jwt:Key"];
 
                 return Ok(new { token });
             }

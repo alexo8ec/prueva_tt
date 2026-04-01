@@ -1,4 +1,4 @@
-
+import Swal from 'sweetalert2';
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { DashboardService } from '../services/dashboard.service';
 import Chart from 'chart.js/auto';
@@ -32,19 +32,33 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit(): void {
+        Swal.fire({
+            title: 'Cargando dashboard...',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            didOpen: () => Swal.showLoading()
+        });
         this.loadData();
     }
 
     loadData() {
-        this.dashboardService.getDashboard().subscribe((resp: any) => {
-
-            const data = resp.data;
-
-            this.totalPedidos = data.total_pedidos;
-            this.clientesActivos = data.clientes_activos;
-
-            this.renderEstadoChart(data.pedidos_por_estado);
-            this.renderDiaChart(data.pedidos_por_dia);
+        this.dashboardService.getDashboard().subscribe({
+            next: (resp: any) => {
+                const data = resp.data;
+                this.totalPedidos = data.total_pedidos;
+                this.clientesActivos = data.clientes_activos;
+                this.renderEstadoChart(data.pedidos_por_estado);
+                this.renderDiaChart(data.pedidos_por_dia);
+                Swal.close();
+            },
+            error: () => {
+                Swal.close();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'No se pudo cargar el dashboard.'
+                });
+            }
         });
     }
 

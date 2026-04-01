@@ -3,5 +3,5 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/prueba', function () {
-    return 'Laravel OK';
+    return 'Ok';
 });

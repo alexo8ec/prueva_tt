@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{6CDAB7B3-DE4F-6FF5-06F0-D824F083F1AF}|AuthService\\AuthService.csproj|solutionrelative:authservice\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{6CDAB7B3-DE4F-6FF5-06F0-D824F083F1AF}|AuthService\\AuthService.csproj|d:\\ejerciciopruebatt\\auth-service\\authservice\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6CDAB7B3-DE4F-6FF5-06F0-D824F083F1AF}|AuthService\\AuthService.csproj|solutionrelative:authservice\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{6CDAB7B3-DE4F-6FF5-06F0-D824F083F1AF}|AuthService\\AuthService.csproj|d:\\ejerciciopruebatt\\auth-service\\authservice\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{6CDAB7B3-DE4F-6FF5-06F0-D824F083F1AF}|AuthService\\AuthService.csproj|solutionrelative:authservice\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
@@ -21,10 +25,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{6CDAB7B3-DE4F-6FF5-06F0-D824F083F1AF}|AuthService\\AuthService.csproj|d:\\ejerciciopruebatt\\auth-service\\authservice\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6CDAB7B3-DE4F-6FF5-06F0-D824F083F1AF}|AuthService\\AuthService.csproj|solutionrelative:authservice\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6CDAB7B3-DE4F-6FF5-06F0-D824F083F1AF}|AuthService\\AuthService.csproj|d:\\ejerciciopruebatt\\auth-service\\authservice\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6CDAB7B3-DE4F-6FF5-06F0-D824F083F1AF}|AuthService\\AuthService.csproj|solutionrelative:authservice\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -44,14 +44,14 @@
               "RelativeDocumentMoniker": "AuthService\\Controllers\\AuthController.cs",
               "ToolTip": "D:\\EjercicioPruebaTT\\auth-service\\AuthService\\Controllers\\AuthController.cs",
               "RelativeToolTip": "AuthService\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAQwEQAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAABEAAAAAAAAAAAAQwD8AAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-30T19:00:49.104Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "AppDbContext.cs",
               "DocumentMoniker": "D:\\EjercicioPruebaTT\\auth-service\\AuthService\\Data\\AppDbContext.cs",
               "RelativeDocumentMoniker": "AuthService\\Data\\AppDbContext.cs",
@@ -59,11 +59,12 @@
               "RelativeToolTip": "AuthService\\Data\\AppDbContext.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-31T11:29:30.992Z"
+              "WhenOpened": "2026-03-31T11:29:30.992Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "User.cs",
               "DocumentMoniker": "D:\\EjercicioPruebaTT\\auth-service\\AuthService\\Models\\User.cs",
               "RelativeDocumentMoniker": "AuthService\\Models\\User.cs",
@@ -75,20 +76,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\EjercicioPruebaTT\\auth-service\\AuthService\\Program.cs",
               "RelativeDocumentMoniker": "AuthService\\Program.cs",
               "ToolTip": "D:\\EjercicioPruebaTT\\auth-service\\AuthService\\Program.cs",
               "RelativeToolTip": "AuthService\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAOAAAAAAAAAA==",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAADIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-31T13:57:00.384Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "RegisterDto.cs",
               "DocumentMoniker": "D:\\EjercicioPruebaTT\\auth-service\\AuthService\\DTOs\\RegisterDto.cs",
               "RelativeDocumentMoniker": "AuthService\\DTOs\\RegisterDto.cs",
@@ -100,7 +101,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\EjercicioPruebaTT\\auth-service\\AuthService\\appsettings.json",
               "RelativeDocumentMoniker": "AuthService\\appsettings.json",
