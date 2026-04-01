@@ -4,27 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Cliente;
 use Illuminate\Http\Request;
-use OpenApi\Annotations as OA;
-
 
 class ClienteController extends Controller
 {
     /**
      * @OA\Get(
-     *     path="/api/clientes",
-     *     summary="Listar clientes",
-     *     tags={"Clientes"},
+     *     path="/api/test",
+     *     summary="Prueba API",
+     *     tags={"Test"},
      *     @OA\Response(
      *         response=200,
-     *         description="Listado de clientes",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="status", type="string", example="success"),
-     *             @OA\Property(
-     *                 property="data",
-     *                 type="array",
-     *                 @OA\Items(ref="#/components/schemas/Cliente")
-     *             )
-     *         )
+     *         description="OK"
      *     )
      * )
      */
