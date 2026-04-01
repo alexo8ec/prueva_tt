@@ -27,10 +27,7 @@ class PedidoController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->get();
 
-            return response()->json([
-                'status' => 'success',
-                'data' => $pedidos
-            ]);
+            return response()->json($pedidos);
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',
@@ -81,10 +78,7 @@ class PedidoController extends Controller
 
             DB::commit();
 
-            return response()->json([
-                'status' => 'success',
-                'data' => $pedido->load('detalles')
-            ], 201);
+            return response()->json($pedido->load('detalles'), 201);
         } catch (\Exception $e) {
             DB::rollBack();
 
@@ -109,10 +103,7 @@ class PedidoController extends Controller
             ], 404);
         }
 
-        return response()->json([
-            'status' => 'success',
-            'data' => $pedido
-        ]);
+        return response()->json($pedido);
     }
 
     /**

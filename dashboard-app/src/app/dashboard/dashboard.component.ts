@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { DashboardService } from '../services/dashboard.service';
 import Chart from 'chart.js/auto';
 import { FormsModule } from '@angular/forms';
@@ -13,7 +13,11 @@ import { AuthService } from '../services/auth.service';
     standalone: true,
     imports: [CommonModule, FormsModule, RouterModule]
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, AfterViewInit {
+        @ViewChild('estadoChartCanvas') estadoChartRef!: ElementRef<HTMLCanvasElement>;
+        @ViewChild('diaChartCanvas') diaChartRef!: ElementRef<HTMLCanvasElement>;
+        private estadoChartInstance: Chart | null = null;
+        private diaChartInstance: Chart | null = null;
     totalPedidos = 0;
     clientesActivos = 0;
 
@@ -24,6 +28,10 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        // No cargar datos aquí, esperar a que el DOM esté listo
+    }
+
+    ngAfterViewInit(): void {
         this.loadData();
     }
 
@@ -41,11 +49,13 @@ export class DashboardComponent implements OnInit {
     }
 
     renderEstadoChart(data: any[]) {
-
+        if (!this.estadoChartRef?.nativeElement) return;
+        if (this.estadoChartInstance) {
+            this.estadoChartInstance.destroy();
+        }
         const labels = data.map(d => d.estado);
         const values = data.map(d => d.total);
-
-        new Chart('estadoChart', {
+        this.estadoChartInstance = new Chart(this.estadoChartRef.nativeElement, {
             type: 'pie',
             data: {
                 labels: labels,
@@ -57,11 +67,13 @@ export class DashboardComponent implements OnInit {
     }
 
     renderDiaChart(data: any[]) {
-
+        if (!this.diaChartRef?.nativeElement) return;
+        if (this.diaChartInstance) {
+            this.diaChartInstance.destroy();
+        }
         const labels = data.map(d => d.fecha);
         const values = data.map(d => d.total);
-
-        new Chart('diaChart', {
+        this.diaChartInstance = new Chart(this.diaChartRef.nativeElement, {
             type: 'line',
             data: {
                 labels: labels,

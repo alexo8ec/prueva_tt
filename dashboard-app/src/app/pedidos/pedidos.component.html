@@ -4,22 +4,53 @@
     <a routerLink="/" class="btn btn-outline-secondary">Volver al inicio</a>
   </div>
   <button class="btn btn-primary mb-3" (click)="abrirModalAgregar()">Agregar Pedido</button>
+
+  <!-- Filtros -->
+  <div class="row mb-3">
+    <div class="col-md-3">
+      <input class="form-control" placeholder="Buscar cliente" [(ngModel)]="filtroCliente" (ngModelChange)="filtrarPedidos()">
+    </div>
+    <div class="col-md-3">
+      <select class="form-control" [(ngModel)]="filtroEstado" (ngModelChange)="filtrarPedidos()">
+        <option value="">Todos los estados</option>
+        <option value="pendiente">Pendiente</option>
+        <option value="completado">Completado</option>
+        <option value="cancelado">Cancelado</option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <input class="form-control" type="date" [(ngModel)]="filtroFecha" (ngModelChange)="filtrarPedidos()">
+    </div>
+  </div>
   <table class="table table-striped">
     <thead>
       <tr>
+        <th>ID</th>
         <th>Cliente</th>
-        <th>Producto</th>
-        <th>Cantidad</th>
+        <th>Estado</th>
+        <th>Total</th>
+        <th>Detalles</th>
         <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let pedido of pedidos">
-        <td>{{ pedido.cliente }}</td>
-        <td>{{ pedido.producto }}</td>
-        <td>{{ pedido.cantidad }}</td>
+      <tr *ngFor="let pedido of pedidosFiltrados">
+        <td>{{ pedido.id }}</td>
+        <td>{{ pedido.cliente?.nombre }} {{ pedido.cliente?.apellido }}</td>
+        <td>{{ pedido.estado }}</td>
+        <td>{{ pedido.total }}</td>
         <td>
-          <!-- Aquí podrías agregar botones de editar/eliminar si lo deseas -->
+          <ul *ngIf="pedido.detalles">
+            <li *ngFor="let det of pedido.detalles">
+              {{ det.producto }} ({{ det.cantidad }}) - ${{ det.precio }}
+            </li>
+          </ul>
+        </td>
+        <td>
+          <button class="btn btn-sm btn-warning me-1" (click)="editarPedido(pedido)">Editar</button>
+          <button class="btn btn-sm btn-success me-1" (click)="marcarCompletado(pedido)">Completado</button>
+          <button class="btn btn-sm btn-secondary me-1" (click)="marcarCancelado(pedido)">Cancelar</button>
+          <button class="btn btn-sm btn-danger" (click)="eliminarPedido(pedido)">Eliminar</button>
         </td>
       </tr>
     </tbody>

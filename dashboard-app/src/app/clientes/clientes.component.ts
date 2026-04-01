@@ -1,23 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ClientesService, Cliente } from '../services/clientes.service';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-clientes',
   templateUrl: './clientes.component.html',
   styleUrls: ['./clientes.component.css'],
   standalone: true,
-  imports: [FormsModule, CommonModule]
+  imports: [FormsModule, CommonModule, RouterModule]
 })
 export class ClientesComponent implements OnInit {
   clientes: Cliente[] = [];
   modalAbierto = false;
   editando = false;
   clienteSeleccionado: Cliente | null = null;
-  nuevoCliente: Cliente = { nombre: '', apellido: '', email: '', telefono: '' };
+  nuevoCliente: Cliente = this.getClienteVacio();
 
-  constructor(private clientesService: ClientesService) {}
+  constructor(private clientesService: ClientesService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.cargarClientes();
@@ -31,21 +32,27 @@ export class ClientesComponent implements OnInit {
 
   abrirModalAgregar() {
     this.editando = false;
-    this.nuevoCliente = { nombre: '', apellido: '', email: '', telefono: '' };
+    this.nuevoCliente = this.getClienteVacio();
     this.modalAbierto = true;
+    this.cdr.detectChanges();
   }
 
   abrirModalEditar(cliente: Cliente) {
     this.editando = true;
     this.clienteSeleccionado = cliente;
-    this.nuevoCliente = { ...cliente };
+    this.nuevoCliente = { ...this.getClienteVacio(), ...cliente };
     this.modalAbierto = true;
+    this.cdr.detectChanges();
   }
 
   cerrarModal() {
     this.modalAbierto = false;
-    this.nuevoCliente = { nombre: '', apellido: '', email: '', telefono: '' };
+    this.nuevoCliente = this.getClienteVacio();
     this.clienteSeleccionado = null;
+    this.cdr.detectChanges();
+  }
+  getClienteVacio(): Cliente {
+    return { nombre: '', apellido: '', email: '', telefono: '' };
   }
 
   guardarCliente() {

@@ -33,9 +33,9 @@ class ClienteController extends Controller
         try {
             $clientes = Cliente::all();
         } catch (\Exception $e) {
-            return response()->json(['status' => 'error', 'message' => 'Error al obtener clientes: '.$e->getMessage()], 500);
+            return response()->json(['status' => 'error', 'message' => 'Error al obtener clientes: ' . $e->getMessage()], 500);
         }
-        return response()->json(['status' => 'success', 'data' => $clientes]);
+        return response()->json($clientes);
     }
 
 
@@ -51,9 +51,8 @@ class ClienteController extends Controller
         } catch (\Illuminate\Validation\ValidationException $e) {
             return response()->json(['status' => 'error', 'message' => 'Error de validación', 'errors' => $e->errors()], 422);
         }
-        return response()->json(['status' => 'success', 'data' => Cliente::create($request->all())]);
+        return response()->json(Cliente::create($request->all()));
     }
-
 
     public function show(int $id)
     {
