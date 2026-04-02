@@ -144,14 +144,6 @@ Esto ejecutará todos los tests unitarios y de integración del frontend en modo
 
 ---
 
-- Las variables de entorno y secretos están configurados en los archivos `.env` y en los servicios de Docker.
-- El sistema utiliza JWT para autenticación entre servicios.
-- Si necesitas limpiar los contenedores y volúmenes:
-  ```sh
-  docker-compose down -v
-  ```
----
-
 ## 7. Ejecutar pruebas unitarias en C# (.NET)
 
 Desde la carpeta `auth-service/AuthService` ejecuta:
@@ -162,4 +154,60 @@ dotnet test
 
 Esto compilará y ejecutará todos los tests unitarios definidos en el proyecto o solución de .NET. Si no tienes tests definidos, verás solo mensajes de compilación exitosa.
 
+## 8. Pruebas de integración entre microservicios
+
+Desde la carpeta `auth-service/IntegrationTests` ejecuta:
+
+```sh
+dotnet test
+```
+
+Esto ejecutará pruebas de integración que validan:
+
+- Que el microservicio de autenticación (.NET) entrega un JWT válido y permite acceder a endpoints protegidos del CRM (Laravel).
+- Que es posible crear un cliente y un pedido en el CRM usando autenticación JWT, y luego listar los pedidos asociados.
+
+Las pruebas están en:
+- `auth-service/IntegrationTests/MicroservicesIntegrationTests.cs`
+- `auth-service/IntegrationTests/ClientesPedidosIntegrationTests.cs`
+- `auth-service/IntegrationTests/RegisterAndLoginIntegrationTests.cs` (registro, login y acceso protegido)
+
+**Requisitos:**
+- Todos los servicios deben estar levantados con Docker Compose y accesibles en `localhost`.
+- El usuario de integración debe existir o ser creado por la prueba.
+
+Puedes agregar más pruebas siguiendo el patrón de estos archivos para validar otros flujos críticos entre microservicios.
+
+---
+
+### Prueba de flujo crítico de negocio (PHP)
+
+En el backend Laravel (`crm-service`) existe el test:
+- `tests/Feature/FlujoCriticoNegocioTest.php`
+
+Este test automatiza el flujo completo:
+1. Registro de usuario en AuthService (.NET)
+2. Login y obtención de JWT
+3. Creación de cliente en CRM
+4. Creación de pedido asociado
+5. Consulta del dashboard
+
+#### Para ejecutarlo:
+
+Desde la carpeta `crm-service`:
+
+```sh
+php artisan test --filter=FlujoCriticoNegocioTest
+```
+
+Esto validará que todos los microservicios funcionan integrados en los flujos más importantes del negocio.
+
+---
+
+- Las variables de entorno y secretos están configurados en los archivos `.env` y en los servicios de Docker.
+- El sistema utiliza JWT para autenticación entre servicios.
+- Si necesitas limpiar los contenedores y volúmenes:
+  ```sh
+  docker-compose down -v
+  ```
 ---
