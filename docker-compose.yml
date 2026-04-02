@@ -48,10 +48,10 @@ services:
       dockerfile: docker/dotnet/Dockerfile
     container_name: dotnet-api
     environment:
-      # 🔥 Swagger SIEMPRE activo
+      # Swagger SIEMPRE activo
       - ASPNETCORE_ENVIRONMENT=Development
 
-      # 🔐 JWT (esto es CLAVE para tu problema anterior)
+      # JWT (esto es CLAVE para tu problema anterior)
       - Jwt__Key=PMv1EXDfHmeZxvRrxtDDxJITaXsP8PlAdtRV2wRbrhOY9tPuqWI0cKHJuFA06SiR
       - Jwt__Issuer=AuthService
       - Jwt__Audience=AuthServiceUsers
