@@ -43,7 +43,7 @@ describe('RegisterComponent', () => {
 
     component.register();
 
-    const req = httpMock.expectOne('https://localhost:7128/api/auth/register');
+    const req = httpMock.expectOne('https://localhost/api/auth/register');
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toEqual({
       nombre: 'Test',

@@ -131,9 +131,35 @@ php artisan test --filter=PedidoTest
 
 ---
 
+## 6. Ejecutar pruebas unitarias en Angular (dashboard-app)
+
+Desde la carpeta `dashboard-app` ejecuta:
+
+```sh
+npm install
+ng test --watch=false
+```
+
+Esto ejecutará todos los tests unitarios y de integración del frontend en modo consola (sin abrir navegador).
+
+---
+
 - Las variables de entorno y secretos están configurados en los archivos `.env` y en los servicios de Docker.
 - El sistema utiliza JWT para autenticación entre servicios.
 - Si necesitas limpiar los contenedores y volúmenes:
   ```sh
   docker-compose down -v
   ```
+---
+
+## 7. Ejecutar pruebas unitarias en C# (.NET)
+
+Desde la carpeta `auth-service/AuthService` ejecuta:
+
+```sh
+dotnet test
+```
+
+Esto compilará y ejecutará todos los tests unitarios definidos en el proyecto o solución de .NET. Si no tienes tests definidos, verás solo mensajes de compilación exitosa.
+
+---
